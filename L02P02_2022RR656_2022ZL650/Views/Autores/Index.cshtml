@@ -1,0 +1,39 @@
+﻿@model IEnumerable<L02P02_2022RR656_2022ZL650.Models.autores>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th>Autor</th>
+            <th> </th>
+
+        </tr>
+
+
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var autores in (IEnumerable<dynamic>) ViewData["listadoAutores"]){
+
+            <tr>
+                <td>@autores.autor</td>
+                <td>
+              
+                    <a href="@Url.Action("Seleccionar", "Autores", new { id = autores.id })" class="btn btn-primary">Seleccionar</a>
+                
+
+                </td>
+
+            </tr> 
+
+
+        }
+
+
+    </tbody>
+
+
+
+</table>

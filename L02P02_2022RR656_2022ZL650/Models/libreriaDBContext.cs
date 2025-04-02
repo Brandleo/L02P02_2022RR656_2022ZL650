@@ -15,6 +15,8 @@ namespace L02P02_2022RR656_2022ZL650.Models
         }
         public DbSet<comentarios_libros> comentarios_libros { get; set; }
 
+        public DbSet<autores> autores { get; set; }
+        public DbSet<libros> libros { get; set; }
 
     }
 }
