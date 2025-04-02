@@ -1,0 +1,28 @@
+﻿@model IEnumerable<L02P02_2022RR656_2022ZL650.Models.libros>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<h2>Autor: @ViewBag.NombreAutor</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre del Libro</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var libro in Model)
+        {
+            <tr>
+                <td>@libro.nombre</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

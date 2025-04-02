@@ -1,5 +1,6 @@
 ﻿using L02P02_2022RR656_2022ZL650.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace L02P02_2022RR656_2022ZL650.Controllers
 {
@@ -12,14 +13,34 @@ namespace L02P02_2022RR656_2022ZL650.Controllers
             _libreriaContexto = libreriaContexto;
         }
 
-
-        public IActionResult Index()
+        public IActionResult LibrosPorAutor(int idAutor)
         {
-            var listaLibros = (from l in _libreriaContexto.libros select l).ToList();
-            ViewData["listadoLibros"] = listaLibros;
+           
+            var autor = _libreriaContexto.autores.FirstOrDefault(a => a.id == idAutor);
+            if (autor == null)
+            {
+                TempData["Error"] = "Autor no encontrado.";
+                return RedirectToAction("Index", "Autores"); 
+            }
 
+           
+            ViewBag.NombreAutor = autor.autor;
 
-            return View();
+            
+            var libros = _libreriaContexto.libros
+                .Where(l => l.id_autor == idAutor)
+                .ToList();
+
+           
+            if (!libros.Any())
+            {
+                TempData["Error"] = "No hay libros de este autor.";
+                return RedirectToAction("Index", "Libros");
+            }
+
+         
+            return View("LibrosPorAutor", libros);
         }
+
     }
 }
