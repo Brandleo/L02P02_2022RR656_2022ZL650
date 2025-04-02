@@ -1,39 +1,35 @@
 ﻿@model IEnumerable<L02P02_2022RR656_2022ZL650.Models.autores>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
+<div class="container mt-5">
+    <!-- Encabezado -->
 
-            <th>Autor</th>
-            <th> </th>
-
-        </tr>
+    <p>Seleccione el autor -> Seleccione el Libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
 
 
 
-    </thead>
 
-    <tbody>
+    <h1 class="text-center mb-4">Listado de Autores</h1>
 
-        @foreach (var autores in (IEnumerable<dynamic>) ViewData["listadoAutores"]){
-
+    <!-- Tabla de Autores -->
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="bg-primary text-white">
             <tr>
-                <td>@autores.autor</td>
-                <td>
-
-                    <a href="@Url.Action("LibrosPorAutor", "Libros", new { idAutor = autores.id })" class="btn btn-success">Seleccionar</a>
-                
-
-                </td>
-
-            </tr> 
-
-
-        }
-
-
-    </tbody>
-
-
-
-</table>
+                <th>Autor</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var autores in (IEnumerable<dynamic>)ViewData["listadoAutores"])
+            {
+                <tr>
+                    <td class="align-middle">@autores.autor</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("LibrosPorAutor", "Libros", new { idAutor = autores.id })" class="btn btn-success">
+                            Seleccionar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
