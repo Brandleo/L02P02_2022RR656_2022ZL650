@@ -9,9 +9,9 @@ namespace L02P02_2022RR656_2022ZL650.Models
         public int id { get; set; }
         [Required]
         public int id_libro { get; set; }
-        public string comentarios { get; set; }
+        public string? comentarios { get; set; }
 
-        public string usuario { get; set; }
+        public string? usuario { get; set; }
 
         public DateTime Created_at { get; set; }    
 

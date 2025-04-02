@@ -1,0 +1,13 @@
+﻿@model L02P02_2022RR656_2022ZL650.Models.comentarios_libros
+@{
+    ViewData["Title"] = "Confirmación de Comentario";
+}
+
+<h2>Comentario Guardado</h2>
+
+<p><strong>Usuario:</strong> @Model.usuario</p>
+<p><strong>Comentario:</strong> @Model.comentarios</p>
+<p><strong>Fecha:</strong> @Model.Created_at.ToString("dd/MM/yyyy HH:mm")</p>
+
+<a asp-action="Index" asp-controller="Comentarios" asp-route-idLibro="@Model.id_libro" class="btn btn-primary">Volver</a>
+

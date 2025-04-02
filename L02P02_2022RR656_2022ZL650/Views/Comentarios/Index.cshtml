@@ -1,0 +1,49 @@
+﻿@model List<L02P02_2022RR656_2022ZL650.Models.comentarios_libros>
+@{
+    ViewData["Title"] = "Comentarios del Libro";
+}
+
+<h2>Comentarios del Libro</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comentario in Model)
+        {
+            <tr>
+                <td>@comentario.usuario</td>
+                <td>@comentario.comentarios</td>
+                <td>@comentario.Created_at.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Agregar Nuevo Comentario</h3>
+<form asp-action="AgregarComentario" asp-controller="Comentarios" method="post">
+    <input type="hidden" name="idLibro" value="@ViewBag.IdLibro" />
+
+    <div class="form-group">
+        <label for="usuario">Nombre:</label>
+        <input type="text" class="form-control" name="usuario" required />
+    </div>
+
+    <div class="form-group">
+        <label for="comentario">Comentario:</label>
+        <textarea class="form-control" name="comentario" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <p class="text-danger">@TempData["Error"]</p>
+}
+
