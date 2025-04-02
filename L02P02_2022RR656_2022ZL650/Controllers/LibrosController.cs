@@ -15,6 +15,10 @@ namespace L02P02_2022RR656_2022ZL650.Controllers
 
         public IActionResult Index()
         {
+            var listaLibros = (from l in _libreriaContexto.libros select l).ToList();
+            ViewData["listadoLibros"] = listaLibros;
+
+
             return View();
         }
     }
