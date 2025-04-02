@@ -17,9 +17,34 @@ namespace L02P02_2022RR656_2022ZL650.Controllers
                 .Where(c => c.id_libro == idLibro)
                 .ToList();
 
-            ViewBag.IdLibro = idLibro; 
+            var libro = _dbContext.libros
+                .Where(l => l.id == idLibro)
+                .Select(l => new
+                {
+                    l.nombre,
+                    AutorNombre = _dbContext.autores
+                        .Where(a => a.id == l.id_autor)
+                        .Select(a => a.autor)
+                        .FirstOrDefault()
+                })
+                .FirstOrDefault();
+
+            if (libro != null)
+            {
+                ViewBag.NombreLibro = libro.nombre;
+                ViewBag.NombreAutor = libro.AutorNombre ?? "Autor desconocido";
+            }
+            else
+            {
+                ViewBag.NombreLibro = "Libro desconocido";
+                ViewBag.NombreAutor = "Autor desconocido";
+            }
+
+            ViewBag.IdLibro = idLibro;
             return View(comentarios);
         }
+
+
         [HttpPost]
         public IActionResult AgregarComentario(int idLibro, string comentario, string usuario)
         {
