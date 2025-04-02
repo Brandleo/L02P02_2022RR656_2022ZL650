@@ -21,6 +21,7 @@
         {
             <tr>
                 <td>@libro.nombre</td>
+                <td>                <a href="@Url.Action("Index", "Comentarios", new { idLibro = libro.id })" class="btn btn-success">Seleccionar</a></td>
 
             </tr>
         }
